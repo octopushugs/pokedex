@@ -1,73 +1,53 @@
-# React + TypeScript + Vite
+Pokedex (151)
+A React + TypeScript application for browsing the original 151 Pokémon, featuring real-time filtering and automated testing.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🛠 Tech Stack
+Core: React, TypeScript, Tailwind CSS
 
-Currently, two official plugins are available:
+Build: Vite
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Testing: Vitest, React Testing Library, JSDOM
 
-## React Compiler
+🚀 Quick Start
+1. Setup
+Bash
+git clone https://github.com/octopushugs/pokedex.git
+cd pokedex
+npm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Run Development Server
+Bash
+npm run dev
+# App will be live at http://localhost:5173
 
-## Expanding the ESLint configuration
+3. Run Tests
+Bash
+npm test          # Watch mode
+npm test run      # Single run
+npx vitest --ui   # Visual test dashboard
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+📋 Key Features
+Parallel API Fetching: Optimized data retrieval via PokeAPI.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Instant Search: Memoized filtering by name and Pokémon type.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Responsive UI: Built with Tailwind CSS for mobile and desktop support.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Tested: Integration tests for data fetching and UI logic.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+📁 Structure
+/src — Main source code
+/src/components - Component definitions
+/src/interfaces — Type definitions
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Technical decisions:
+* React/Typescript
+  * I like these
+* Vitest
+  * I'm familiar with Vitest and I've had positive experiences with Gemini and Claude writing with it.
+* AI Assistant
+  * Normally I use Claude, but they've been having some issues lately so experimented with Gemini for this one. It was just as easy as Claude, though having it integrated in to my IDE would be nice.
+* N+1 requests
+  * On page load our useEffect hook fires a request to get the first 151 Pokemon, then fires another GET for each entry in the response. That was the most straighforward solution to getting the details for each, but that's a spot ripe for improvement.
+* No backend
+  * I opted to have an SPA that just queries the PokeAPI directly rather than going with an intermediate API for the sake of speed and because there weren't any requirements beyond displaying data that PokeAPI supplies. If I wanted to be a good internet citizen I would likely want to cache the PokeAPI data, on my own server, and naturally would use one if there was any data transformation to be done before getting to the end user.
