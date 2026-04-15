@@ -10,21 +10,26 @@ Testing: Vitest, React Testing Library, JSDOM
 
 🚀 Quick Start
 1. Setup
-Bash
+
+```
 git clone https://github.com/octopushugs/pokedex.git
 cd pokedex
 npm install
+```
 
 2. Run Development Server
-Bash
-npm run dev
-# App will be live at http://localhost:5173
+
+`npm run dev`
+
+*App will be live at http://localhost:5173*
 
 3. Run Tests
-Bash
+
+```
 npm test          # Watch mode
 npm test run      # Single run
 npx vitest --ui   # Visual test dashboard
+```
 
 📋 Key Features
 Parallel API Fetching: Optimized data retrieval via PokeAPI.
@@ -36,9 +41,12 @@ Responsive UI: Built with Tailwind CSS for mobile and desktop support.
 Tested: Integration tests for data fetching and UI logic.
 
 📁 Structure
+
+```
 /src — Main source code
 /src/components - Component definitions
 /src/interfaces — Type definitions
+```
 
 ### Technical decisions:
 * React/Typescript
